@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Justin Bieber Fan Page — Useless Deluxe Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --rainbow: linear-gradient(
+          45deg,
+          #ff0080,
+          #ff8c00,
+          #ffe600,
+          #34d399,
+          #3b82f6,
+          #8b5cf6,
+          #ff0080
+        );
+        --bg-anim-duration: 18s;
+      }
+      /* Absolutely unnecessary animated background */
+      body {
+        margin: 0;
+        font-family: "Comic Sans MS", "Papyrus", cursive, system-ui, sans-serif;
+        color: #111;
+        background: linear-gradient(120deg, #fff5f7, #f0f9ff, #f5f3ff);
+        background-size: 300% 300%;
+        animation: bgShift var(--bg-anim-duration) ease-in-out infinite;
+      }
+      @keyframes bgShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Scroll progress bar that means nothing */
+      #progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 6px;
+        width: 0%;
+        background-image: var(--rainbow);
+        background-size: 300% 300%;
+        animation: bgShift 10s linear infinite;
+        z-index: 9999;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Marquee banner because why not */
+      .banner {
+        position: sticky;
+        top: 6px;
+        z-index: 9998;
+        background: #fff;
+        border-bottom: 4px dashed hotpink;
+        filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.05));
+      }
+      .banner marquee {
+        padding: 8px 0;
+        font-weight: 900;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        background-image: var(--rainbow);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+      }
+
+      /* Header that blinks, wobbles, and sparkles */
+      h1 {
+        margin: 32px auto 8px;
+        text-align: center;
+        font-size: clamp(28px, 6vw, 64px);
+        text-shadow: 0 2px 0 #fff, 0 0 14px rgba(255, 0, 128, 0.3);
+        animation: wobble 3.6s ease-in-out infinite;
+      }
+      @keyframes wobble {
+        0%,
+        100% {
+          transform: rotate(0deg) scale(1);
+        }
+        25% {
+          transform: rotate(-1.5deg) scale(1.02);
+        }
+        50% {
+          transform: rotate(1.5deg) scale(0.98);
+        }
+        75% {
+          transform: rotate(-0.5deg) scale(1.03);
+        }
+      }
+      .blink {
+        animation: blink 1.6s steps(2, start) infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0.35;
+        }
+      }
+
+      p.intro {
+        max-width: 70ch;
+        margin: 0 auto 20px;
+        padding: 0 16px;
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      /* Container with rotating rainbow border that serves no purpose */
+      .stage {
+        max-width: 1200px;
+        margin: 12px auto 80px;
+        padding: 18px;
+        border-radius: 18px;
+        position: relative;
+        background: rgba(255, 255, 255, 0.7);
+        overflow: visible;
+      }
+      .stage:before {
+        content: "";
+        position: absolute;
+        inset: -3px;
+        border-radius: 22px;
+        background: conic-gradient(
+          from var(--angle),
+          #ff0080,
+          #ff8c00,
+          #ffe600,
+          #34d399,
+          #3b82f6,
+          #8b5cf6,
+          #ff0080
+        );
+        z-index: -1;
+        animation: spin 6s linear infinite;
+      }
+      @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      @keyframes spin {
+        to {
+          --angle: 360deg;
+        }
+      }
+
+      /* Your original gallery items, now needlessly fancy */
+      .justin {
+        width: min(520px, 90%);
+        margin: 18px auto;
+        transform: rotate(var(--tilt, 0deg));
+        transition: transform 0.3s ease, filter 0.3s ease;
+        filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.12));
+      }
+      .justin:hover {
+        transform: rotate(0deg) scale(1.02);
+        filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.18));
+      }
+      .pic {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 14px;
+        border: 8px solid transparent;
+        background-image: var(--rainbow);
+        background-clip: padding-box, border-box;
+        background-origin: padding-box, border-box;
+        background-repeat: no-repeat;
+        background-size: cover, 300% 300%;
+        animation: bgShift 14s ease-in-out infinite;
+      }
+
+      /* Floating emoji confetti (pure nonsense) */
+      .confetti {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9997;
+      }
+
+      /* Cursor sparkle trail */
+      .sparkle {
+        position: fixed;
+        pointer-events: none;
+        font-size: 14px;
+        opacity: 1;
+        transform: translate(-50%, -50%);
+        animation: floatFade 900ms ease-out forwards;
+        will-change: transform, opacity;
+      }
+      @keyframes floatFade {
+        to {
+          transform: translate(-50%, -120%);
+          opacity: 0;
+        }
+      }
+
+      /* Totally optional dark mode that barely changes anything */
+      .dark {
+        color: #f7f7f7;
+        background: radial-gradient(1000px 600px at 50% 0%, #121212, #000);
+      }
+      .dark .stage {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .dark .banner {
+        background: #0b0b0b;
+        border-bottom-color: #7c3aed;
+      }
+      .dark h1 {
+        text-shadow: 0 2px 0 #000, 0 0 14px rgba(124, 58, 237, 0.35);
+      }
+
+      /* Useless sticky toolbar */
+      .toolbar {
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        z-index: 9999;
+        display: grid;
+        gap: 8px;
+      }
+      .btn {
+        border: 0;
+        padding: 10px 12px;
+        border-radius: 12px;
+        font-weight: 800;
+        cursor: pointer;
+        background-image: var(--rainbow);
+        color: #111;
+        background-size: 300% 300%;
+        animation: bgShift 10s linear infinite;
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+      }
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      /* Popup that pesters you pointlessly */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+      }
+      .modal {
+        width: min(520px, 92%);
+        background: #fff;
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      }
+      .modal h3 {
+        margin: 0 0 8px;
+      }
+      .modal p {
+        margin: 0 0 12px;
+      }
+      .modal .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+      .modal input {
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px dashed hotpink;
+      }
+      .modal .close {
+        float: right;
+        cursor: pointer;
+        font-weight: 900;
+      }
+
+      /* Loader overlay that appears for no good reason */
+      .loader {
+        position: fixed;
+        inset: 0;
+        background: #fff;
+        display: grid;
+        place-items: center;
+        z-index: 10001;
+        animation: fadeout 2.2s ease forwards 1.4s;
+      }
+      .spinner {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 10px solid #ffe4f1;
+        border-top-color: #ff0080;
+        border-right-color: #8b5cf6;
+        animation: spinny 1.2s linear infinite;
+      }
+      @keyframes spinny {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes fadeout {
+        to {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+
+      /* Footer marquee 2x for extra uselessness */
+      footer {
+        margin: 40px auto 60px;
+        text-align: center;
+        opacity: 0.8;
+      }
+
+      /* Tiny accessibility-ish: respect reduced motion (but we still keep some sass) */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+        .sparkle {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Pointless loader -->
+    <div class="loader" aria-hidden="true">
+      <div>
+        <div
+          class="spinner"
+          role="status"
+          aria-label="Loading fan vibes..."
+        ></div>
+        <p style="text-align: center; margin-top: 10px; font-weight: 900">
+          Infusing ✨Bieber Energy✨...
+        </p>
+      </div>
+    </div>
+
+    <!-- Scroll progress -->
+    <div id="progress" aria-hidden="true"></div>
+
+    <!-- Marquee banner -->
+    <div class="banner">
+      <marquee behavior="alternate" scrollamount="6" direction="left"
+        >BREAKING: This page now contains 0% necessary features and 100%
+        sparkle.</marquee
+      >
+    </div>
+
+    <h1>
+      <span class="blink">JUSTIN BIEBER</span> FAN PAGE —
+      <span class="blink">MAXIMUM EDITION</span> 💿
+    </h1>
+    <p class="intro">
+      Welcome to the ultimate fan page for Justin Bieber! Here you can find all
+      the latest news, photos, and updates about the pop sensation — plus ten
+      thousand completely gratuitous UI choices.
+    </p>
+
+    <div class="stage">
+      <div id="potato" aria-live="polite"></div>
+    </div>
+
+    <!-- Confetti & sparkle layers -->
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+
+    <!-- Useless toolbar -->
+    <div class="toolbar">
+      <button class="btn" id="toggleDark">🌓 Dark-ish Mode</button>
+      <button class="btn" id="moreBieber">✨ Enhance Bieber 10%</button>
+      <button class="btn" id="openModal">📬 Join the Fan Club</button>
+    </div>
+
+    <!-- Silly modal -->
+    <div
+      class="modal-backdrop"
+      id="modalBackdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal">
+        <span class="close" id="closeModal" title="Close">✖</span>
+        <h3 id="modalTitle">Join the ✨Totally Real✨ Bieber Fan Club</h3>
+        <p>Get absolutely no emails and exclusive access to nothing.</p>
+        <div class="row">
+          <input placeholder="Your Most Iconic Nickname" />
+          <input placeholder="Favorite Bieber Era" />
+        </div>
+        <div class="row">
+          <input placeholder="Email (ignored)" />
+          <input placeholder="Favorite Emoji" />
+        </div>
+        <button class="btn" id="submitFake">I’m In (Pointlessly)</button>
+        <p
+          id="modalThanks"
+          style="display: none; margin-top: 10px; font-weight: 900"
+        >
+          Thanks! We filed this directly to the void.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <marquee behavior="scroll" direction="right" scrollamount="4"
+        >Made with 💖, 🛼, and an irresponsible amount of CSS.</marquee
+      >
+      <marquee behavior="alternate" direction="left" scrollamount="3"
+        >Tip: Press ↑ ↑ ↓ ↓ ← → ← → B A for a surprise.</marquee
+      >
+    </footer>
+
+    <script>
+      // --- Keep your original dynamic image gallery, but randomize tilt for extra whimsy
+      (function buildGallery() {
+        const potato = document.getElementById("potato");
+        for (let id = 1; id < 6; id++) {
+          const div = document.createElement("div");
+          div.className = "justin";
+          const tilt = (Math.random() * 8 - 4).toFixed(2) + "deg";
+          div.style.setProperty("--tilt", tilt);
+          div.innerHTML = `<img class="pic" src="justin${id}.jpg" alt="Justin Bieber ${id}">`;
+          potato.appendChild(div);
+        }
+      })();
+
+      // --- Totally unnecessary scroll progress bar
+      (function setupProgress() {
+        const bar = document.getElementById("progress");
+        const onScroll = () => {
+          const max =
+            document.documentElement.scrollHeight - window.innerHeight;
+          const pct = (window.scrollY / max) * 100;
+          bar.style.width = pct + "%";
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      })();
+
+      // --- Floating emoji confetti that spawns forever
+      (function confetti() {
+        const layer = document.getElementById("confetti");
+        const EMOJIS = ["✨", "🎤", "💖", "🛼", "🌟", "🎶", "🫶", "⚡️"];
+        function spawnPiece() {
+          const span = document.createElement("span");
+          span.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+          const size = 16 + Math.random() * 22;
+          const left = Math.random() * 100;
+          const dur = 6 + Math.random() * 6;
+          span.style.position = "absolute";
+          span.style.left = left + "vw";
+          span.style.top = "-5vh";
+          span.style.fontSize = size + "px";
+          span.style.animation = `fall ${dur}s linear forwards`;
+          layer.appendChild(span);
+          setTimeout(() => span.remove(), dur * 1000 + 200);
+        }
+        const style = document.createElement("style");
+        style.textContent = `
+        @keyframes fall {
+          0%   { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+          10%  { opacity: 1; }
+          100% { transform: translateY(110vh) rotate(720deg); opacity: .8; }
+        }`;
+        document.head.appendChild(style);
+        setInterval(spawnPiece, 300); // delightfully excessive
+      })();
+
+      // --- Sparkle mouse trail
+      (function sparkleTrail() {
+        const EMOJIS = ["✨", "✦", "✧", "❇︎", "⁂"];
+        let last = 0;
+        window.addEventListener(
+          "pointermove",
+          (e) => {
+            const now = performance.now();
+            if (now - last < 20) return; // throttle (we're not monsters)
+            last = now;
+            const s = document.createElement("div");
+            s.className = "sparkle";
+            s.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+            s.style.left = e.clientX + "px";
+            s.style.top = e.clientY + "px";
+            document.body.appendChild(s);
+            setTimeout(() => s.remove(), 900);
+          },
+          { passive: true }
+        );
+      })();
+
+      // --- Dark-ish mode toggle that hardly changes anything
+      document.getElementById("toggleDark").addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+      });
+
+      // --- "Enhance Bieber 10%" button that inflates font-size and tilt chaos
+      document.getElementById("moreBieber").addEventListener("click", () => {
+        document.documentElement.style.fontSize =
+          parseFloat(getComputedStyle(document.documentElement).fontSize) *
+            1.1 +
+          "px";
+        // Randomize tilts again
+        document.querySelectorAll(".justin").forEach((div) => {
+          const tilt = (Math.random() * 12 - 6).toFixed(2) + "deg";
+          div.style.setProperty("--tilt", tilt);
+        });
+      });
+
+      // --- Modal shenanigans
+      const modalBackdrop = document.getElementById("modalBackdrop");
+      const openModal = document.getElementById("openModal");
+      const closeModal = document.getElementById("closeModal");
+      const submitFake = document.getElementById("submitFake");
+      const modalThanks = document.getElementById("modalThanks");
+
+      function showModal() {
+        modalBackdrop.style.display = "flex";
+      }
+      function hideModal() {
+        modalBackdrop.style.display = "none";
+      }
+      openModal.addEventListener("click", showModal);
+      closeModal.addEventListener("click", hideModal);
+      modalBackdrop.addEventListener("click", (e) => {
+        if (e.target === modalBackdrop) hideModal();
+      });
+      submitFake.addEventListener("click", () => {
+        modalThanks.style.display = "block";
+        setTimeout(hideModal, 1200);
+      });
+      // Pop up uninvited after a moment, of course
+      setTimeout(showModal, 3000);
+
+      // --- Konami code -> airhorn (but polite)
+      (function konami() {
+        const target = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+        const buf = [];
+        window.addEventListener("keydown", (e) => {
+          buf.push(e.keyCode);
+          if (buf.length > target.length) buf.shift();
+          if (target.every((v, i) => v === buf[i])) {
+            surprise();
+            buf.length = 0;
+          }
+        });
+        function surprise() {
+          // harmless "airhorn": synth via WebAudio (quiet!)
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const o = ctx.createOscillator();
+          const g = ctx.createGain();
+          o.type = "square";
+          o.frequency.value = 180;
+          g.gain.value = 0.02;
+          o.connect(g).connect(ctx.destination);
+          o.start();
+          setTimeout(() => {
+            o.stop();
+            ctx.close();
+          }, 350);
+          // bonus confetti burst
+          for (let i = 0; i < 30; i++)
+            setTimeout(
+              () => document.querySelector(".toolbar .btn")?.click(),
+              i * 10
+            );
+        }
+      })();
+
+      // --- Make sure our marquee text alternates colors (utterly needless)
+      setInterval(() => {
+        document.querySelectorAll("marquee").forEach((m) => {
+          m.style.filter = `hue-rotate(${Math.floor(Math.random() * 360)}deg)`;
+        });
+      }, 1000);
+
+      // Reduce-annoyance: Don't autoplay real audio; keep animations under control on low-power devices
+      // but still: this page is intentionally extra ✨
+    </script>
+  </body>
+</html>
