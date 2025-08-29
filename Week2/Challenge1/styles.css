@@ -1,0 +1,81 @@
+/* styles.css - Challenge #1 (Skeleton) */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: lightblue;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.site-header {
+  text-align: center;
+}
+
+.site-header > h1 {
+  color: pink;
+}
+
+.tagline {
+  font-style: italic;
+}
+
+.about {
+  line-height: 120%;
+}
+
+.hero {
+  text-align: center;
+  background-color: white;
+  max-width: 800px;
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 30%;
+  margin: auto;
+}
+
+#mascot-image {
+  max-width: 70%;
+}
+
+.actions {
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 0 5px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  margin-bottom: 20px;
+  min-width: 50px;
+  height: auto;
+}
+
+button:hover {
+  background-image: linear-gradient(rgb(0 0 0/40%) 0 0); /* Darken colour */
+  cursor: pointer;
+}
+
+.buy-tickets {
+  background-color: lightgreen;
+  box-shadow: 0 0 5px blue;
+}
+
+.make-donation {
+  background-color: blue;
+  box-shadow: 0 0 5px pink;
+}
+
+.site-footer {
+  text-align: center;
+  border-top: 1px solid grey;
+  opacity: 50%;
+  font-size: 60%;
+}
