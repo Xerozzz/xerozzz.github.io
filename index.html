@@ -1,1 +1,83 @@
-LEE YI TERNG
+<html>
+  <head>
+    <title>Lee Yi Terng</title>
+    <style>
+      :root {
+        --width: 50%;
+      }
+      body {
+        background-color: #f7f9fe;
+      }
+      .container {
+        padding: 10px 20px;
+      }
+      .potato {
+        width: 100%;
+        border-radius: 10px;
+        opacity: 0.8;
+      }
+      .modal {
+        width: var(--width);
+        position: relative;
+        margin-bottom: 15px;
+      }
+      .arrow {
+        width: 10%;
+        transform: rotate(-90deg);
+      }
+      .float {
+        position: absolute;
+        left: 15px;
+        bottom: 2px;
+        color: black;
+      }
+      .float p {
+        display: inline-block;
+        background-color: white;
+      }
+      .bio {
+        width: var(--width);
+        background-color: rgb(255, 205, 213);
+        padding: 5px 10px;
+        margin-top: 15px;
+        border: 1px solid #dddddd;
+        border-radius: 10px;
+      }
+      .vid {
+        width: var(--width);
+        height: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Lee Yi Terng</h1>
+
+      <div class="modal">
+        <img class="potato" src="potato.jpg" alt="Picture of me" />
+        <div class="float">
+          <img class="arrow" src="arrow.png" />
+          <p>This is me!</p>
+        </div>
+      </div>
+
+      <div class="video">
+        <iframe
+          class="vid"
+          src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1"
+        >
+        </iframe>
+      </div>
+
+      <div class="bio">
+        <h4>Bio</h4>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+          necessitatibus reprehenderit debitis ad asperiores iusto expedita
+          modi. Cumque officia numquam vel enim perferendis consectetur dolorem
+          maxime eius unde expedita. Magnam!
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
